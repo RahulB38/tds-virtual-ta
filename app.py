@@ -16,7 +16,7 @@ import uvicorn
 import traceback
 from dotenv import load_dotenv
 
-
+app = FastAPI()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -594,6 +594,11 @@ def parse_llm_response(response):
         }
 
 # Define API routes
+@app.get("/")
+def home():
+    return {"message": "TDS Virtual TA is live"} 
+
+    
 @app.post("/query")
 async def query_knowledge_base(request: QueryRequest):
     try:
