@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 DB_PATH = "knowledge_base.db"
-SIMILARITY_THRESHOLD = 0.59
+SIMILARITY_THRESHOLD = 0.58
 MAX_RESULTS = 10  
 load_dotenv()
 MAX_CONTEXT_CHUNKS = 4  
