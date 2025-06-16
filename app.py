@@ -1,3 +1,4 @@
+# app.py
 import os
 import json
 import sqlite3
@@ -16,21 +17,22 @@ import uvicorn
 import traceback
 from dotenv import load_dotenv
 
-app = FastAPI()
+# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+# Constants
 DB_PATH = "knowledge_base.db"
-SIMILARITY_THRESHOLD = 0.55
-MAX_RESULTS = 10  
+SIMILARITY_THRESHOLD = 0.55  # Lowered threshold for better recall
+MAX_RESULTS = 10  # Increased to get more context
 load_dotenv()
-MAX_CONTEXT_CHUNKS = 4  
-API_KEY = os.getenv("OPENAI_API_KEY")  
+MAX_CONTEXT_CHUNKS = 4  # Increased number of chunks per source
+API_KEY = os.getenv("OPENAI_API_KEY")  # Get API key from environment variable
 
 # Models
 class QueryRequest(BaseModel):
     question: str
-    image: Optional[str] = None
+    image: Optional[str] = None  # Base64 encoded image
 
 class LinkInfo(BaseModel):
     url: str
@@ -594,11 +596,6 @@ def parse_llm_response(response):
         }
 
 # Define API routes
-@app.get("/")
-def home():
-    return {"message": "TDS Virtual TA is live"} 
-
-    
 @app.post("/query")
 async def query_knowledge_base(request: QueryRequest):
     try:
