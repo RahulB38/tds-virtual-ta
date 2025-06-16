@@ -25,7 +25,7 @@ SIMILARITY_THRESHOLD = 0.60
 MAX_RESULTS = 10  
 load_dotenv()
 MAX_CONTEXT_CHUNKS = 4  
-API_KEY = os.getenv("API_KEY")  
+API_KEY = os.getenv("OPENAI_API_KEY")  
 
 # Models
 class QueryRequest(BaseModel):
