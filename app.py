@@ -406,7 +406,11 @@ async def generate_answer(question, relevant_results, max_retries=2):
             # Prepare improved prompt
             prompt = f"""Answer the following question based ONLY on the provided context. 
             If you cannot answer the question based on the context, say "I don't have enough information to answer this question."
-            
+            IMPORTANT RULES:
+             - Do NOT attempt to correct, complete, or reinterpret any math expression, number, or spelling from the context.
+             - Always use the exact math expressions, values, symbols, or terms as written in the context — even if they appear unusual, incomplete, or misspelled.
+             - NEVER simplify, approximate, or rephrase math or formulas.
+             - Do not infer any information not explicitly stated in the context.
             Context:
             {context}
             
